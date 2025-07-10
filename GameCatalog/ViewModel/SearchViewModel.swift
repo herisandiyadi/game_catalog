@@ -13,7 +13,7 @@ class SearchViewModel: ObservableObject{
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     
-    private let apiKey = "2e3a8ba34fa54075bf379c98b54cf51e"
+    let apiKey = Bundle.main.infoDictionary?["RAWG_API_KEY"] as? String ?? ""
     private let baseUrl = "https://api.rawg.io/api/games"
     
     func searchProduct(q: String){

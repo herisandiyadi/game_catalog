@@ -399,6 +399,8 @@
 /* Begin XCBuildConfiguration section */
 		B77B475A2E19AB13006D4456 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = B77B473A2E19AB11006D4456 /* GameCatalog */;
+			baseConfigurationReferenceRelativePath = rawg_key.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -462,6 +464,8 @@
 		};
 		B77B475B2E19AB13006D4456 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = B77B473A2E19AB11006D4456 /* GameCatalog */;
+			baseConfigurationReferenceRelativePath = rawg_key.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
