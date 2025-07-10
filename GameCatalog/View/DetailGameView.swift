@@ -2,7 +2,7 @@
 //  DetailGameView.swift
 //  GameCatalog
 //
-//  Created by Heri Sandiyadi on 06/05/25.
+//  Created by Heri Sandiyadi on 07/07/25.
 //
 
 import SwiftUI
