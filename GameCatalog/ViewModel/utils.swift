@@ -16,3 +16,16 @@ let platformIconMap: [String: String] = [
     "Gameboy": "ic_gameboy"
 
 ]
+
+func formatTanggal(_ tanggalString: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd" // Format input
+    dateFormatter.locale = Locale(identifier: "id_ID") // Gunakan Bahasa Indonesia
+    
+    if let date = dateFormatter.date(from: tanggalString) {
+        dateFormatter.dateFormat = "d MMMM yyyy" // Format output
+        return dateFormatter.string(from: date)
+    } else {
+        return "Format tidak valid"
+    }
+}

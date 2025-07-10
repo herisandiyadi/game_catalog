@@ -12,6 +12,7 @@ struct CustomCardView: View {
     let imageUrl: String?
     let rating: Double
     let ratingCount: Int
+    let releaseDate: String
     let platform: [ParentPlatform]
 
     var body: some View {
@@ -129,6 +130,36 @@ struct CustomCardView: View {
                     )
                     .listRowInsets(EdgeInsets())
                     .padding(.bottom, 4)
+                
+                Rectangle()
+                    .fill(Color("GreyColor"))
+                    .frame(maxWidth: 165, maxHeight: 20, alignment: .leading)
+                    .overlay(
+                        HStack(alignment: .center, spacing: 4) {
+                            Text("Released:")
+                                .font(.system(size: 10, weight: .regular, design: .rounded))
+                                .foregroundColor(.white)
+
+                            Text(formatTanggal(releaseDate))
+                                .font(.system(size: 10, weight: .regular, design: .rounded))
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal, 4)
+                        .frame(maxWidth: .infinity, alignment: .leading) 
+                    )
+                    .clipShape(
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 4,
+                            bottomLeadingRadius: 4,
+                            bottomTrailingRadius: 4,
+                            topTrailingRadius: 4
+                        )
+                    )
+                    .listRowInsets(EdgeInsets())
+                    .padding(.bottom, 4)
+
             }.padding(.horizontal, 16)
             
             Spacer()

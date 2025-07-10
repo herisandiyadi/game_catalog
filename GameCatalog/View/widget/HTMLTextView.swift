@@ -15,7 +15,7 @@ struct HTMLTextView: UIViewRepresentable {
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.backgroundColor = .clear
-        textView.textColor = UIColor.white // Warna teks default
+        textView.textColor = UIColor.white
         return textView
     }
 

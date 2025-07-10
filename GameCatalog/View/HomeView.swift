@@ -52,6 +52,7 @@ struct HomeView: View {
                         imageUrl: product.backgroundImage,
                         rating: product.rating,
                         ratingCount: product.ratingsCount,
+                        releaseDate: product.released,
                         platform: product.parentPlatforms
                     )
                     .onTapGesture {
