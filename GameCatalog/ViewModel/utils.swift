@@ -19,11 +19,11 @@ let platformIconMap: [String: String] = [
 
 func formatTanggal(_ tanggalString: String) -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd" // Format input
-    dateFormatter.locale = Locale(identifier: "id_ID") // Gunakan Bahasa Indonesia
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    dateFormatter.locale = Locale(identifier: "id_ID")
     
     if let date = dateFormatter.date(from: tanggalString) {
-        dateFormatter.dateFormat = "d MMMM yyyy" // Format output
+        dateFormatter.dateFormat = "d MMMM yyyy"
         return dateFormatter.string(from: date)
     } else {
         return "Format tidak valid"
