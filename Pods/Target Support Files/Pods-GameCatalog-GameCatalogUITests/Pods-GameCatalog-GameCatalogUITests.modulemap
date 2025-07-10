@@ -1,0 +1,6 @@
+framework module Pods_GameCatalog_GameCatalogUITests {
+  umbrella header "Pods-GameCatalog-GameCatalogUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
