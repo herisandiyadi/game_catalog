@@ -10,7 +10,7 @@ import Foundation
 struct DetailProductModel: Decodable {
     let id: Int
     let slug, name, nameOriginal, description: String
-    let released: String
+    let released: String?
     let tba: Bool
     let updated: String
     let backgroundImage, backgroundImageAdditional: String

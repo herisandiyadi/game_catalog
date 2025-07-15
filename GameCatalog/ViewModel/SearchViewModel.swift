@@ -13,27 +13,27 @@ class SearchViewModel: ObservableObject{
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     
-    let apiKey = Bundle.main.infoDictionary?["RAWG_API_KEY"] as? String ?? ""
-    private let baseUrl = "https://api.rawg.io/api/games"
+    private let productService: ProductServiceProtocol
+    
+    init(productService: ProductServiceProtocol = ProductService()) {
+        self.productService = productService
+    }
     
     func searchProduct(q: String){
         isLoading = true
         errorMessage = nil
         
-        let url = "\(baseUrl)?key=\(apiKey)&search=\(q)"
+        productService.searchProduct(q: q) { [weak self] result in DispatchQueue.main.async {
+            self?.isLoading = false
+            switch result {
+            case .success(let searchProducts):
+                self?.searchProducts = searchProducts
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
 
-        AF.request(url).validate().responseDecodable(of: SearchProductModel.self) { response in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                switch response.result {
-                case .success(let searchProduct):
-
-                    self.searchProducts = searchProduct.results
-                case .failure(let error):
-
-                    self.errorMessage = error.localizedDescription
-                }
+            }
             }
         }
+       
     }
 }

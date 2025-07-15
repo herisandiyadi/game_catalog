@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct GameCatalogApp: App {
+    @StateObject var favoriteViewModel = FavoriteViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(favoriteViewModel)
         }
     }
 }

@@ -11,79 +11,74 @@ struct ContentView: View {
     @State private var selectedTab = 0
 
     var body: some View {
-        NavigationStack{
-            VStack {
-                HStack {
-                    Image("logo_rawg")
-                        .frame(width: 80)
-                        .padding(.horizontal, 24)
-                    
-                    Spacer()
-
-                }
-                .padding(.horizontal, 16)
-
+        NavigationStack {
+            VStack(spacing: 0) {
+                headerView
                 Spacer()
-                
-                if selectedTab == 0 {
-                    HomeView()
-                } else if selectedTab == 1 {
-                    SearchView()
-                } else {
-                    ProfileView()
-                }
-                
+                contentView
                 Spacer()
-                
-                HStack {
-                    Button(action: { selectedTab = 0 }) {
-                        VStack {
-                            Image(systemName: "house.fill")
-                            Text("Home")
-                                .font(.caption)
-                        }
-                        .foregroundColor(selectedTab == 0 ? .white : .gray)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                    }
-                    
-                    Button(action: { selectedTab = 1 }) {
-                        VStack {
-                            Image(systemName: "magnifyingglass")
-                            Text("Search")
-                                .font(.caption)
-                        }
-                        .foregroundColor(selectedTab == 1 ? .white : .gray)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                    }
-                    
-                    Button(action: { selectedTab = 2 }) {
-                        VStack {
-                            Image(systemName: "person.fill")
-                            Text("Profile")
-                                .font(.caption)
-                        }
-                        .foregroundColor(selectedTab == 2 ? .white : .gray)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                    }
-                }
-                .background(Color("GreyColor"))
-                .clipShape(Capsule())
-                .padding(.horizontal, 24)
-          
-                .shadow(radius: 5)
+                tabBar
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                       .background(Color("BackgroundColor"))
-                       
+            .background(Color("BackgroundColor"))
         }
+    }
+
+    // MARK: - Header
+    private var headerView: some View {
+        HStack {
+            Image("logo_rawg")
+                .resizable()
+                .frame(width: 80, height: 40)
+                .padding(.horizontal, 24)
+            Spacer()
         }
-       
+        .padding(.horizontal, 16)
+    }
+
+    // MARK: - Tab Content
+    @ViewBuilder
+    private var contentView: some View {
+        switch selectedTab {
+        case 0: HomeView()
+        case 1: SearchView()
+        case 2: FavoriteView()
+        case 3: ProfileView()
+        default: HomeView()
+        }
+    }
+
+    // MARK: - Bottom Tab Bar
+    private var tabBar: some View {
+        HStack {
+            tabBarItem(icon: "house.fill", label: "Home", index: 0)
+            tabBarItem(icon: "magnifyingglass", label: "Search", index: 1)
+            tabBarItem(icon: "heart.fill", label: "Favorite", index: 2)
+            tabBarItem(icon: "person.fill", label: "Profile", index: 3)
+        }
+        .background(Color("GreyColor"))
+        .clipShape(Capsule())
+        .padding(.horizontal, 24)
+        .shadow(radius: 5)
+    }
+
+    private func tabBarItem(icon: String, label: String, index: Int) -> some View {
+        Button(action: { selectedTab = index }) {
+            VStack {
+                Image(systemName: icon)
+                Text(label)
+                    .font(.caption)
+            }
+            .foregroundColor(selectedTab == index ? .white : .gray)
+            .padding()
+            .frame(maxWidth: .infinity)
+        }
+    }
 }
 
+
 #Preview {
-    ContentView()
+    ContentView().environmentObject(FavoriteViewModel())
+
 }

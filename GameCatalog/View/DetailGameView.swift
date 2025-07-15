@@ -10,182 +10,179 @@ import SwiftUI
 struct DetailGameView: View {
     let id: Int
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel = ProductViewModel()
-    
+    @StateObject private var viewModel = ProductViewModel()
+    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
+
     var body: some View {
-        
-        ZStack { Color("BackgroundColor")
-                .ignoresSafeArea()
-                   if viewModel.isLoading {
-                       ProgressView("Loading...")
-                           .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center) .foregroundColor(.white)
-                               .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                   } else if let error = viewModel.errorMessage {
-                       Text("Error: \(error)")
-                           .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center) .foregroundColor(.white)
-                   } else if let detailProduct = viewModel.detailProduct {
-                       let ratings = String(format: "%.1f", detailProduct.rating)
+        ZStack {
+            Color("BackgroundColor").ignoresSafeArea()
+            
+            if viewModel.isLoading {
+                loadingView
+            } else if let error = viewModel.errorMessage {
+                errorView(message: error)
+            } else if let product = viewModel.detailProduct {
+                detailContent(for: product)
+            }
+        }
+        .onAppear {
+            viewModel.fetchDetailProduct(id: id)
+        }
+    }
 
-                       VStack(spacing: 0) {
-                           
-                           HStack {
-                               Text(detailProduct.name)
-                                   .font(.system(size: 24, weight: .semibold, design: .rounded))
-                                   .foregroundColor(.white)
-                               
-                           }
-                           .padding(16)
-                           ScrollView {
-                               VStack(alignment: .leading, spacing: 16) {
-                                   Rectangle()
-                                       .fill(Color.gray.opacity(0.3))
-                                       .overlay(
-                                        AsyncImage(url: URL(string: detailProduct.backgroundImage)) { image in
-                                               image
-                                                   .resizable()
-                                                   .scaledToFill()
-                                           } placeholder: {
-                                               ProgressView()  .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                           }
-                                       )
-                                       .frame(height: 208)
-                                       .clipShape(
-                                           UnevenRoundedRectangle(
-                                               topLeadingRadius: 8,
-                                               bottomLeadingRadius: 0,
-                                               bottomTrailingRadius: 0,
-                                               topTrailingRadius: 0
-                                           )
-                                       ).listRowInsets(EdgeInsets())
-                                       .listRowBackground(Color.clear)
-                                   
-                                   HStack(spacing: 8) {
-                                       ForEach(detailProduct.parentPlatforms, id: \.platform.name) { parent in
-                                           if let iconName = platformIconMap.first(where: { parent.platform.name.contains($0.key) })?.value {
-                                               Image(iconName)
-                                                   .resizable()
-                                                   .frame(width: 16, height: 16)
-                                           }
-                                       }
-                                   }
+    private var loadingView: some View {
+        ProgressView("Loading...")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .foregroundColor(.white)
+            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+    }
 
-                                   HStack(spacing: 8){
-                                       Rectangle()
-                                           .fill(Color("GreyColor"))
-                                           .frame(width: 52, height: 20)
-                                           .overlay(
-                                               HStack {
-                                                   Image(systemName: "star.fill")
-                                                       .resizable()
-                                                       .scaledToFit()
-                                                       .frame(width: 12, height: 12)
-                                                       .foregroundColor(.white)
-                                                   
-                                                   Text(ratings)
-                                                       .font(.system(size: 14, weight: .regular, design: .rounded))
-                                                       .foregroundColor(.white)
-                                               }
-                                               .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                           )
-                                           .clipShape(
-                                               UnevenRoundedRectangle(
-                                                   topLeadingRadius: 4,
-                                                   bottomLeadingRadius: 4,
-                                                   bottomTrailingRadius: 4,
-                                                   topTrailingRadius: 4
-                                               )
-                                           )
-                                           .listRowInsets(EdgeInsets())
-                                           .padding(.bottom, 4)
-                                       
-                                       Rectangle()
-                                           .fill(Color("GreyColor"))
-                                           .frame(maxWidth: 85)
-                                           .frame(height: 20)
-                                           .overlay(
-                                               HStack {
-                                                   Image(systemName: "eye.fill")
-                                                       .resizable()
-                                                       .scaledToFit()
-                                                       .frame(width: 12, height: 12)
-                                                       .foregroundColor(.white)
-                                                   
-                                                   Text("\(detailProduct.ratingsCount)")
-                                                       .font(.system(size: 14, weight: .regular, design: .rounded))
-                                                       .foregroundColor(.white)
-                                               }.padding(.horizontal, 4)
-                                           )
-                                          
-                                           .clipShape(
-                                               UnevenRoundedRectangle(
-                                                   topLeadingRadius: 4,
-                                                   bottomLeadingRadius: 4,
-                                                   bottomTrailingRadius: 4,
-                                                   topTrailingRadius: 4
-                                               )
-                                           )
-                                           .listRowInsets(EdgeInsets())
-                                           .padding(.bottom, 4)
-                                       
-                                       Rectangle()
-                                           .fill(Color("GreyColor"))
-                                           .frame(maxWidth: 165, maxHeight: 20, alignment: .leading)
-                                           .overlay(
-                                               HStack(alignment: .center, spacing: 4) {
-                                                   Text("Released:")
-                                                       .font(.system(size: 10, weight: .regular, design: .rounded))
-                                                       .foregroundColor(.white)
+    private func errorView(message: String) -> some View {
+        Text("Error: \(message)")
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
 
-                                                   Text(formatTanggal(detailProduct.released))
-                                                       .font(.system(size: 10, weight: .regular, design: .rounded))
-                                                       .foregroundColor(.white)
-                                                   
-                                                   Spacer()
-                                               }
-                                               .padding(.horizontal, 4)
-                                               .frame(maxWidth: .infinity, alignment: .leading)
-                                           )
-                                           .clipShape(
-                                               UnevenRoundedRectangle(
-                                                   topLeadingRadius: 4,
-                                                   bottomLeadingRadius: 4,
-                                                   bottomTrailingRadius: 4,
-                                                   topTrailingRadius: 4
-                                               )
-                                           )
-                                           .listRowInsets(EdgeInsets())
-                                           .padding(.bottom, 4)
-                                   }
-                                   
-                                   Text("Description")
-                                       .font(.system(size: 24, weight: .semibold, design: .rounded))
-                                       .foregroundColor(.white).padding(.top, 16)
-                                   Text(detailProduct.descriptionRaw)
-                                       .font(.system(size: 18, weight: .light, design: .rounded))
-                                       .foregroundColor(.white).opacity(0.8)
-                               }
-                               .padding()
-                           }
-                           
-                       } .background(Color("BackgroundColor").ignoresSafeArea())
-                       .navigationBarBackButtonHidden(true)
-                           .navigationBarItems(leading:
-                                                   Button(action: {
-                               presentationMode.wrappedValue.dismiss()
-                           }) {
-                               Image(systemName: "chevron.left")
-                                   .foregroundColor(.white)
-                           }
-                           )
-                   }
-               }
-               .onAppear {
-                   viewModel.fetchDetailProduct(id: id)
-               }
+    private func detailContent(for product: DetailProductModel) -> some View {
+        let ratings = String(format: "%.1f", product.rating)
+
+        return VStack(spacing: 0) {
+            headerView(product: product)
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    gameImageView(url: product.backgroundImage)
+
+                    platformIcons(product.parentPlatforms)
+
+                    statsRow(
+                        rating: ratings,
+                        ratingCount: product.ratingsCount,
+                        released: product.released ?? ""
+                    )
+
+                    Text("Description")
+                        .font(.title3.bold())
+                        .foregroundColor(.white)
+                        .padding(.top, 8)
+
+                    Text(product.descriptionRaw)
+                        .font(.body)
+                        .foregroundColor(.white.opacity(0.8))
+                }
+                .padding()
+            }
+        }
+        .background(Color("BackgroundColor").ignoresSafeArea())
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton)
+    }
+
+    private func headerView(product: DetailProductModel) -> some View {
+        HStack {
+            Text(product.name)
+                .font(.system(size: 24, weight: .semibold, design: .rounded))
+                .foregroundColor(.white)
+
+            Spacer()
+
+            FavoriteButton(
+                favoriteModel: buildFavoriteModel(
+                    id: product.id,
+                    title: product.name,
+                    imageUrl: product.backgroundImage,
+                    releaseDate: product.released ?? "",
+                    ratingCount: product.ratingsCount,
+                    rating: product.rating,
+                    platform: product.parentPlatforms
+                )
+            )
+        }
+        .padding(16)
+    }
+
+    private func gameImageView(url: String) -> some View {
+        Rectangle()
+            .fill(Color.gray.opacity(0.3))
+            .overlay(
+                AsyncImage(url: URL(string: url)) { image in
+                    image.resizable().scaledToFill()
+                } placeholder: {
+                    ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .white))
+                }
+            )
+            .frame(height: 208)
+            .clipShape(UnevenRoundedRectangle(topLeadingRadius: 8))
+    }
+
+    private func platformIcons(_ platforms: [ParentPlatform]) -> some View {
+        HStack(spacing: 8) {
+            ForEach(platforms, id: \.platform.name) { parent in
+                if let iconName = platformIconMap.first(where: { parent.platform.name.contains($0.key) })?.value {
+                    Image(iconName)
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                }
+            }
+        }
+    }
+
+    private func statsRow(rating: String, ratingCount: Int, released: String) -> some View {
+        HStack(spacing: 8) {
+            statItem(systemName: "star.fill", text: rating)
+            statItem(systemName: "eye.fill", text: "\(ratingCount)")
+            releaseItem(date: released)
+        }
+    }
+
+    private func statItem(systemName: String, text: String) -> some View {
+        RoundedRectangle(cornerRadius: 4)
+            .fill(Color("GreyColor"))
+            .frame(width: 65, height: 20)
+            .overlay(
+                HStack(spacing: 4) {
+                    Image(systemName: systemName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(.white)
+                    Text(text)
+                        .font(.system(size: 14))
+                        .foregroundColor(.white)
+                }
+            )
+    }
+
+    private func releaseItem(date: String) -> some View {
+        RoundedRectangle(cornerRadius: 4)
+            .fill(Color("GreyColor"))
+            .frame(width: 160, height: 20)
+            .overlay(
+                HStack(spacing: 4) {
+                    Text("Released:")
+                        .font(.system(size: 10))
+                        .foregroundColor(.white)
+                    Text(formatTanggal(date))
+                        .font(.system(size: 10))
+                        .foregroundColor(.white)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 4)
+            )
+    }
+
+    private var backButton: some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.white)
+        }
     }
 }
 
 
 #Preview {
     DetailGameView(id: 100)
+        .environmentObject(FavoriteViewModel())
 }

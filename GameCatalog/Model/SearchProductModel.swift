@@ -24,7 +24,7 @@ struct SearchResult: Decodable {
     let slug, name: String
     let playtime: Int
     let platforms: [ParentPlatformElement]
-    let released: String
+    let released: String?
     let tba: Bool
     let backgroundImage: String?
     let rating: Double

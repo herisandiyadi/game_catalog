@@ -9,10 +9,10 @@ struct ProductModel: Decodable {
     let count: Int
     let next: String
     let previous: JSONNull?
-    let results: [Result]
+    let results: [ResultProduct]
 }
 
-struct Result: Decodable {
+struct ResultProduct: Decodable {
     let id: Int
     let slug, name, released: String
     let tba: Bool

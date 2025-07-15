@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel = ProductViewModel()
-    @State private var selectedCard: Int? = nil
+    @StateObject private var viewModel = ProductViewModel()
+    @State private var selectedCardID: Int? = nil
+    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("BackgroundColor")
                     .ignoresSafeArea()
-                
+
                 contentView
             }
-            .onAppear {
-                viewModel.fetchProduct()
-            }
             .navigationDestination(isPresented: Binding<Bool>(
-                get: { selectedCard != nil },
-                set: { if !$0 { selectedCard = nil } }
+                get: { selectedCardID != nil },
+                set: { if !$0 { selectedCardID = nil } }
             )) {
-                if let id = selectedCard {
+                if let id = selectedCardID {
                     DetailGameView(id: id)
                 }
             }
@@ -36,18 +34,34 @@ struct HomeView: View {
     @ViewBuilder
     private var contentView: some View {
         if viewModel.isLoading {
-            ProgressView("Loading...")
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .foregroundColor(.white)
-                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+            loadingView
         } else if let error = viewModel.errorMessage {
-            Text("Error: \(error)")
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            errorView(message: error)
         } else {
-            List {
+            gameListView
+        }
+    }
+
+    private var loadingView: some View {
+        ProgressView("Loading...")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .foregroundColor(.white)
+            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+    }
+
+    private func errorView(message: String) -> some View {
+        Text("Error: \(message)")
+            .foregroundColor(.white)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var gameListView: some View {
+        ScrollView {
+            LazyVStack(spacing: 16) {
                 ForEach(viewModel.products, id: \.id) { product in
                     CustomCardView(
+                        id: product.id,
                         title: product.name,
                         imageUrl: product.backgroundImage,
                         rating: product.rating,
@@ -56,19 +70,21 @@ struct HomeView: View {
                         platform: product.parentPlatforms
                     )
                     .onTapGesture {
-                        selectedCard = product.id
+                        selectedCardID = product.id
                     }
-                    .listRowSeparator(.hidden)
-                    .padding()
+                    .padding(.horizontal)
                 }
             }
-            .listStyle(PlainListStyle())
-            .scrollContentBackground(.hidden) 
-            .background(Color("BackgroundColor"))
+            .padding(.top, 8)
+        }
+        .refreshable {
+            viewModel.fetchProduct()
         }
     }
 }
 
+
 #Preview {
-    HomeView()
+    HomeView().environmentObject(FavoriteViewModel())
+
 }
