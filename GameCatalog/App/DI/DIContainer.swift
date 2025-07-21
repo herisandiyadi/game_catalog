@@ -16,6 +16,7 @@ class DIContainer {
     registerDependencies()
     registerInjectionHome()
     registerDetailInjection()
+    registerInjectionSearch()
   }
   
   private func registerDependencies(){

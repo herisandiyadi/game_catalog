@@ -12,7 +12,6 @@ protocol HomeUsecase {
 }
 
 class HomeInteractor: HomeUsecase {
-  
   private let productRepository: ProductRepositoryProtocol
 
   init(productRepository: ProductRepositoryProtocol) {

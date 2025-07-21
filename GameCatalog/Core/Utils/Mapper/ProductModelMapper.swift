@@ -34,4 +34,14 @@ final class ProductModelMapper {
   static func detailProductToEntity(_ detailProduct: DetailProductModel) -> DetailProductEntity {
     return DetailProductEntity(id: detailProduct.id, slug: detailProduct.slug, name: detailProduct.name, nameOriginal: detailProduct.nameOriginal, description: detailProduct.description, released: detailProduct.released, tba: detailProduct.tba, updated: detailProduct.updated, backgroundImage: detailProduct.backgroundImage, backgroundImageAdditional: detailProduct.backgroundImageAdditional, website: detailProduct.website, rating: detailProduct.rating, ratingsCount: detailProduct.ratingsCount, reviewsCount: detailProduct.reviewsCount, saturatedColor: detailProduct.saturatedColor, dominantColor: detailProduct.dominantColor, parentPlatforms:parentPlatformModeltoEntity(detailProduct.parentPlatforms), clip: detailProduct.clip, descriptionRaw: detailProduct.descriptionRaw)
   }
+  
+  static func searchProductToEntity(_ searchProduct: SearchProductModel) -> SearchProductEntity {
+    return SearchProductEntity(count: searchProduct.count, next: searchProduct.next, previous: searchProduct.previous, results: searchResultToEntity(searchProduct.results), userPlatforms: searchProduct.userPlatforms)
+  }
+  
+  static func searchResultToEntity(_ searchResults: [SearchResult]) -> [SearchResultEntity] {
+    return searchResults.map { searchResult in
+      SearchResultEntity(slug: searchResult.slug, name: searchResult.name, playtime: searchResult.playtime, platforms: parentPlatformModeltoEntity(searchResult.parentPlatforms), released: searchResult.released, tba: searchResult.tba, backgroundImage: searchResult.backgroundImage, rating: searchResult.rating, updated: searchResult.updated, id: searchResult.id, score: searchResult.score, clip: searchResult.clip, reviewsCount: searchResult.reviewsCount, ratingsCount: searchResult.ratingsCount, saturatedColor: searchResult.saturatedColor, dominantColor: searchResult.dominantColor, parentPlatforms: parentPlatformModeltoEntity(searchResult.parentPlatforms))
+    }
+    }
 }

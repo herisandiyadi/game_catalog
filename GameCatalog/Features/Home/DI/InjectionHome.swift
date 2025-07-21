@@ -23,6 +23,7 @@ extension DIContainer {
     
     container.register(HomeRouter.self) { _ in
       HomeRouter()
+      
     }
   }
 }

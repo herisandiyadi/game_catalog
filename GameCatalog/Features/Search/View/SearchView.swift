@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct SearchView: View {
     @State private var searchText = ""
-    @StateObject private var viewModel = SearchViewModel()
-    @State private var selectedCardID: Int? = nil
+  @StateObject private var presenter: SearchPresenter = DIContainer.shared.resolve(SearchPresenter.self)
     @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
@@ -26,15 +24,15 @@ struct SearchView: View {
 
                     contentView
                 }
-                .padding(.top, 30)
-                .navigationDestination(isPresented: Binding<Bool>(
-                    get: { selectedCardID != nil },
-                    set: { if !$0 { selectedCardID = nil } }
-                )) {
-                    if let id = selectedCardID {
-                        DetailGameView(id: id)
-                    }
-                }
+//                .padding(.top, 30)
+//                .navigationDestination(isPresented: Binding<Bool>(
+//                    get: { selectedCardID != nil },
+//                    set: { if !$0 { selectedCardID = nil } }
+//                )) {
+//                    if let id = selectedCardID {
+//                        DetailGameView(id: id)
+//                    }
+//                }
             }
             .onSubmit {
                 handleSearch()
@@ -45,19 +43,19 @@ struct SearchView: View {
     private func handleSearch() {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
         if !trimmed.isEmpty {
-            viewModel.searchProduct(q: trimmed)
+          presenter.searchGames(q: trimmed)
         } else {
-            viewModel.searchProducts = []
+          presenter.searchResult = []
         }
     }
 
     @ViewBuilder
     private var contentView: some View {
-        if viewModel.isLoading {
+        if presenter.isLoading {
             loadingView
-        } else if let error = viewModel.errorMessage {
+        } else if let error = presenter.errorMessage {
             errorView(error)
-        } else if viewModel.searchProducts.isEmpty && !searchText.isEmpty {
+        } else if presenter.searchResult.isEmpty && !searchText.isEmpty {
             emptyResultsView
         } else {
             resultsListView
@@ -88,22 +86,22 @@ struct SearchView: View {
             Color("BackgroundColor").ignoresSafeArea()
             ScrollView{
                 LazyVStack(spacing: 16){
-//                    ForEach(viewModel.searchProducts, id: \.id) { product in
-//                        CustomCardView(
-//                            id: product.id,
-//                            title: product.name,
-//                            imageUrl: product.backgroundImage,
-//                            rating: product.rating,
-//                            ratingCount: product.ratingsCount,
-//                            releaseDate: product.released,
-//                            platform: product.parentPlatforms
-//                        )
+                  ForEach(presenter.searchResult, id: \.id) { product in
+                        CustomCardView(
+                            id: product.id,
+                            title: product.name,
+                            imageUrl: product.backgroundImage,
+                            rating: product.rating,
+                            ratingCount: product.ratingsCount,
+                            releaseDate: product.released,
+                            platform: product.parentPlatforms
+                        )
 //                        .onTapGesture {
 //                            selectedCardID = product.id
 //                        }
-//                        .padding(.horizontal)
-//                    }
-//                    .listRowBackground(Color.clear)
+                        .padding(.horizontal)
+                    }
+                    .listRowBackground(Color.clear)
                 }  .padding(.top, 8)
             }
 

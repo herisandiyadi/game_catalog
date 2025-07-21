@@ -41,5 +41,20 @@ class ProductRepositoryImpl: ProductRepositoryProtocol {
     }
   }
   
+  func searchProduct(q: String, completion: @escaping (Result<[SearchResultEntity], any Error>) -> Void) {
+    productService.searchProduct(q: q) { searchResult in
+      switch searchResult {
+      case .success(let success):
+        let entities = self.mapper.searchResultToEntity(success)
+        completion(.success(entities))
+      case .failure(let failure):
+        completion(.failure(failure))
+      }
+      
+    }
+  }
+  
+  
+  
   
 }

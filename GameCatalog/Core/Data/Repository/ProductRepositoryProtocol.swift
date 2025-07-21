@@ -10,4 +10,6 @@ import Foundation
 protocol ProductRepositoryProtocol {
   func getProducts(completion: @escaping (Result<[ProductEntity], Error>) -> Void)
   func detailProduct(id: Int, completion: @escaping (Result<DetailProductEntity, Error>) -> Void )
+  
+  func searchProduct(q: String, completion: @escaping (Result<[SearchResultEntity], Error>) -> Void)
 }
