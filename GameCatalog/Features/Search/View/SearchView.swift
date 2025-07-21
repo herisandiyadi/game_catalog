@@ -87,19 +87,17 @@ struct SearchView: View {
             ScrollView{
                 LazyVStack(spacing: 16){
                   ForEach(presenter.searchResult, id: \.id) { product in
-                        CustomCardView(
-                            id: product.id,
-                            title: product.name,
-                            imageUrl: product.backgroundImage,
-                            rating: product.rating,
-                            ratingCount: product.ratingsCount,
-                            releaseDate: product.released,
-                            platform: product.parentPlatforms
-                        )
-//                        .onTapGesture {
-//                            selectedCardID = product.id
-//                        }
-                        .padding(.horizontal)
+                    presenter.linkBuilder(for: product.id) {
+                      CustomCardView(
+                          id: product.id,
+                          title: product.name,
+                          imageUrl: product.backgroundImage,
+                          rating: product.rating,
+                          ratingCount: product.ratingsCount,
+                          releaseDate: product.released,
+                          platform: product.parentPlatforms
+                      )
+                    }.padding(.horizontal)
                     }
                     .listRowBackground(Color.clear)
                 }  .padding(.top, 8)

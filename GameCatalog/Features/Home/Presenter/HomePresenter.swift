@@ -18,6 +18,7 @@ class HomePresenter: ObservableObject {
   
   init(homeUsecase: HomeUsecase) {
     self.homeUsecase = homeUsecase
+    loadGames()
   }
   
   func loadGames(){

@@ -18,9 +18,7 @@ struct HomeView: View {
 
                 contentView
             }
-            .onAppear {
-                presenter.loadGames()
-            }
+            
         }
     }
 
@@ -69,6 +67,8 @@ struct HomeView: View {
                 }
             }
             .padding(.top, 8)
+        }.refreshable {
+          presenter.loadGames()
         }
         // Refreshable bisa kamu tambahkan kalau perlu
     }
