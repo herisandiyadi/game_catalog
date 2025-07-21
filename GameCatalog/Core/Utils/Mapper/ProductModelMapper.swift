@@ -30,4 +30,8 @@ final class ProductModelMapper {
       GenreEntity(id: genre.id, name: genre.name, slug: genre.slug, gamesCount: genre.gamesCount, imageBackground: genre.imageBackground)
     }
   }
+  
+  static func detailProductToEntity(_ detailProduct: DetailProductModel) -> DetailProductEntity {
+    return DetailProductEntity(id: detailProduct.id, slug: detailProduct.slug, name: detailProduct.name, nameOriginal: detailProduct.nameOriginal, description: detailProduct.description, released: detailProduct.released, tba: detailProduct.tba, updated: detailProduct.updated, backgroundImage: detailProduct.backgroundImage, backgroundImageAdditional: detailProduct.backgroundImageAdditional, website: detailProduct.website, rating: detailProduct.rating, ratingsCount: detailProduct.ratingsCount, reviewsCount: detailProduct.reviewsCount, saturatedColor: detailProduct.saturatedColor, dominantColor: detailProduct.dominantColor, parentPlatforms:parentPlatformModeltoEntity(detailProduct.parentPlatforms), clip: detailProduct.clip, descriptionRaw: detailProduct.descriptionRaw)
+  }
 }

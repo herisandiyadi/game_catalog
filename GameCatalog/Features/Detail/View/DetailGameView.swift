@@ -10,23 +10,23 @@ import SwiftUI
 struct DetailGameView: View {
     let id: Int
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var viewModel = ProductViewModel()
+  @StateObject private var presenter = DIContainer.shared.resolve(DetailPresenter.self)
     @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
         ZStack {
             Color("BackgroundColor").ignoresSafeArea()
             
-            if viewModel.isLoading {
+          if presenter.loadingState {
                 loadingView
-            } else if let error = viewModel.errorMessage {
+            } else if let error = presenter.errorMessage {
                 errorView(message: error)
-            } else if let product = viewModel.detailProduct {
+            } else if let product = presenter.detailProduct {
                 detailContent(for: product)
             }
         }
         .onAppear {
-            viewModel.fetchDetailProduct(id: id)
+          presenter.getDetailProduct(id: id)
         }
     }
 
@@ -43,7 +43,7 @@ struct DetailGameView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    private func detailContent(for product: DetailProductModel) -> some View {
+  private func detailContent(for product: DetailProductEntity) -> some View {
         let ratings = String(format: "%.1f", product.rating)
 
         return VStack(spacing: 0) {
@@ -78,7 +78,7 @@ struct DetailGameView: View {
         .navigationBarItems(leading: backButton)
     }
 
-    private func headerView(product: DetailProductModel) -> some View {
+  private func headerView(product: DetailProductEntity) -> some View {
         HStack {
             Text(product.name)
                 .font(.system(size: 24, weight: .semibold, design: .rounded))
@@ -115,7 +115,7 @@ struct DetailGameView: View {
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 8))
     }
 
-    private func platformIcons(_ platforms: [ParentPlatform]) -> some View {
+    private func platformIcons(_ platforms: [ParentPlatformEntity]) -> some View {
         HStack(spacing: 8) {
             ForEach(platforms, id: \.platform.name) { parent in
                 if let iconName = platformIconMap.first(where: { parent.platform.name.contains($0.key) })?.value {

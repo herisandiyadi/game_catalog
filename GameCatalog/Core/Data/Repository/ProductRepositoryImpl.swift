@@ -18,12 +18,9 @@ class ProductRepositoryImpl: ProductRepositoryProtocol {
   
   func getProducts(completion: @escaping (Result<[ProductEntity], any Error>) -> Void) {
     productService.fetchProducts { result in
-      
       switch result {
       case .success(let success):
         let entities = self.mapper.mapProductResponsetoEntity(success)
-        print("DATA REPO \(entities)")
-
         completion(.success(entities))
       case .failure(let failure):
         completion(.failure(failure))
@@ -31,5 +28,18 @@ class ProductRepositoryImpl: ProductRepositoryProtocol {
       
     }
   }
+  
+  func detailProduct(id: Int, completion: @escaping (Result<DetailProductEntity, any Error>) -> Void) {
+    productService.fetchProductDetail(id: id) { detailResult in
+      switch detailResult {
+      case .success(let success):
+        let entities = self.mapper.detailProductToEntity(success)
+        completion(.success(entities))
+      case .failure(let failure):
+        completion(.failure(failure))
+      }
+    }
+  }
+  
   
 }

@@ -19,7 +19,7 @@ struct DetailProductModel: Decodable {
     let ratingsCount, reviewsCount: Int
     let saturatedColor, dominantColor: String
     let parentPlatforms: [ParentPlatform]
-    let clip: JSONNull?
+    let clip: String?
     let descriptionRaw: String
 
     enum CodingKeys: String, CodingKey {
