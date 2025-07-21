@@ -40,7 +40,7 @@ class ProductViewModel: ObservableObject {
         }
     }
     
-    func fetchDetailProduct(id: Int){
+    func fetchDetailProduct(id: Int) {
         isLoading = true
         errorMessage = nil
         
@@ -55,7 +55,6 @@ class ProductViewModel: ObservableObject {
         }
             
         }
-              
     }
     
 }

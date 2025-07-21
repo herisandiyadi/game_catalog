@@ -16,17 +16,17 @@ protocol ProductServiceProtocol {
 
 class ProductService: ProductServiceProtocol {
     
-    private let apiKey = Bundle.main.infoDictionary?["RAWG_API_KEY"] as? String ?? ""
-        private let baseUrl = "https://api.rawg.io/api/games"
-    
     func searchProduct(q: String, completion: @escaping (Result<[SearchResult], any Error>) -> Void) {
-        let url = "\(baseUrl)?key=\(apiKey)&search=\(q)"
+      let url = Endpoints.Gets.search(query: q).path
 
         AF.request(url).validate().responseDecodable(of: SearchProductModel.self) { response in
                if let data = response.data, let json = String(data: data, encoding: .utf8) {
                }
             switch response.result {
+              
             case .success(let productResponse):
+              print(productResponse.results)
+
                 completion(.success(productResponse.results))
             case .failure(let error):
                 completion(.failure(error))
@@ -35,11 +35,13 @@ class ProductService: ProductServiceProtocol {
     }
 
     func fetchProducts(completion: @escaping (Result<[ResultProduct], any Error>) -> Void) {
-        let url = "\(baseUrl)?key=\(apiKey)"
+      let url = Endpoints.Gets.all.path
 
         AF.request(url).validate().responseDecodable(of: ProductModel.self) { response in
             switch response.result {
-            case .success(let productResponse): completion(.success(productResponse.results))
+            case .success(let productResponse):
+              completion(.success(productResponse.results))
+              print("DATA GET \(productResponse.results)")
             case .failure(let error) : completion(.failure(error))
             }
        
@@ -47,8 +49,8 @@ class ProductService: ProductServiceProtocol {
     }
     
     func fetchProductDetail(id: Int, completion: @escaping (Result<DetailProductModel, any Error>) -> Void) {
-        let url = "\(baseUrl)/\(id)?key=\(apiKey)"
-        
+      let url = Endpoints.Gets.detail(id: id).path
+
         AF.request(url).validate().responseDecodable(of: DetailProductModel.self) {response in
                 switch response.result {
             case .success(let detailProductResponse): completion(.success(detailProductResponse))

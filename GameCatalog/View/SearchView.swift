@@ -88,22 +88,22 @@ struct SearchView: View {
             Color("BackgroundColor").ignoresSafeArea()
             ScrollView{
                 LazyVStack(spacing: 16){
-                    ForEach(viewModel.searchProducts, id: \.id) { product in
-                        CustomCardView(
-                            id: product.id,
-                            title: product.name,
-                            imageUrl: product.backgroundImage,
-                            rating: product.rating,
-                            ratingCount: product.ratingsCount,
-                            releaseDate: product.released,
-                            platform: product.parentPlatforms
-                        )
-                        .onTapGesture {
-                            selectedCardID = product.id
-                        }
-                        .padding(.horizontal)
-                    }
-                    .listRowBackground(Color.clear)
+//                    ForEach(viewModel.searchProducts, id: \.id) { product in
+//                        CustomCardView(
+//                            id: product.id,
+//                            title: product.name,
+//                            imageUrl: product.backgroundImage,
+//                            rating: product.rating,
+//                            ratingCount: product.ratingsCount,
+//                            releaseDate: product.released,
+//                            platform: product.parentPlatforms
+//                        )
+//                        .onTapGesture {
+//                            selectedCardID = product.id
+//                        }
+//                        .padding(.horizontal)
+//                    }
+//                    .listRowBackground(Color.clear)
                 }  .padding(.top, 8)
             }
 

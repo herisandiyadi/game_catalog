@@ -14,7 +14,7 @@ struct CustomCardView: View {
     let rating: Double
     let ratingCount: Int
     let releaseDate: String?
-    let platform: [ParentPlatform]
+    let platform: [ParentPlatformEntity]
     @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
@@ -149,7 +149,7 @@ struct CustomCardView: View {
         ratingCount: 1000,
         releaseDate: "2024-01-01",
         platform: [
-            ParentPlatform(platform: Platform(id: 0, name: "PC", slug: "pc"))
+            ParentPlatformEntity(platform: PlatformEntity(id: 0, name: "PC", slug: "pc"))
         ]
     )
     .environmentObject(FavoriteViewModel())

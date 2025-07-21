@@ -10,6 +10,7 @@
 		19C40EE5BE13DFEC73F37107 /* Pods_GameCatalogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABEFA6C74DB86159F55D358 /* Pods_GameCatalogTests.framework */; };
 		321316E078BAFAE67EB446C7 /* Pods_GameCatalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46AFC047A1280286BAA69F4 /* Pods_GameCatalog.framework */; };
 		B7904B1E2E20F243008544EE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B7904B1D2E20F243008544EE /* RealmSwift */; };
+		B791FD2C2E27A113002F2591 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B791FD2B2E27A113002F2591 /* Swinject */; };
 		B797AC372E251F3B00C56520 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = B797AC362E251F3B00C56520 /* AlertToast */; };
 		B7DC072C2E1BD83900B28124 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B7DC072B2E1BD83900B28124 /* Alamofire */; };
 		FC65EA0769D93B0C70AE07C0 /* Pods_GameCatalog_GameCatalogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE19B92AF695DD1F3988664F /* Pods_GameCatalog_GameCatalogUITests.framework */; };
@@ -84,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7904B1E2E20F243008544EE /* RealmSwift in Frameworks */,
+				B791FD2C2E27A113002F2591 /* Swinject in Frameworks */,
 				B797AC372E251F3B00C56520 /* AlertToast in Frameworks */,
 				321316E078BAFAE67EB446C7 /* Pods_GameCatalog.framework in Frameworks */,
 				B7DC072C2E1BD83900B28124 /* Alamofire in Frameworks */,
@@ -259,6 +261,7 @@
 				B7BC15D92E1E869E00174EF2 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				B7904B1C2E20F243008544EE /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B797AC352E251F3B00C56520 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				B791FD282E27A06F002F2591 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B77B47392E19AB11006D4456 /* Products */;
@@ -712,6 +715,14 @@
 				kind = branch;
 			};
 		};
+		B791FD282E27A06F002F2591 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
 		B797AC352E251F3B00C56520 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
@@ -743,6 +754,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B7904B1C2E20F243008544EE /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		B791FD2B2E27A113002F2591 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B791FD282E27A06F002F2591 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 		B797AC362E251F3B00C56520 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

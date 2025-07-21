@@ -30,7 +30,7 @@ func formatTanggal(_ tanggalString: String) -> String {
     }
 }
 
-func buildFavoriteModel(id: Int, title: String, imageUrl: String?, releaseDate: String, ratingCount: Int, rating: Double, platform: [ParentPlatform]) -> FavoriteModel {
+func buildFavoriteModel(id: Int, title: String, imageUrl: String?, releaseDate: String, ratingCount: Int, rating: Double, platform: [ParentPlatformEntity]) -> FavoriteModel {
     let fav = FavoriteModel()
     fav.gameId = id
     fav.name = title
@@ -42,10 +42,10 @@ func buildFavoriteModel(id: Int, title: String, imageUrl: String?, releaseDate: 
     return fav
 }
 
-func parsePlatforms(from string: String) -> [ParentPlatform] {
+func parsePlatforms(from string: String) -> [ParentPlatformEntity] {
     let names = string.components(separatedBy: ", ").map { $0.trimmingCharacters(in: .whitespaces) }
     return names.map { name in
-        ParentPlatform(platform: Platform(id:0, name: name, slug: ""))
+        ParentPlatformEntity(platform: PlatformEntity(id:0, name: name, slug: ""))
     }
 }
 

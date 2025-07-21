@@ -20,12 +20,12 @@ struct ResultProduct: Decodable {
     let rating: Double
     let ratingTop, ratingsCount, reviewsTextCount, added: Int
     let updated: String
-    let userGame: JSONNull?
+    let userGame: String?
     let reviewsCount: Int
     let saturatedColor, dominantColor: String
     let parentPlatforms: [ParentPlatform]
     let genres: [Genre]
-    let clip: JSONNull?
+    let clip: String?
 
     enum CodingKeys: String, CodingKey {
         case id, slug, name, released, tba

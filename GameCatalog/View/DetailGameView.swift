@@ -86,17 +86,17 @@ struct DetailGameView: View {
 
             Spacer()
 
-            FavoriteButton(
-                favoriteModel: buildFavoriteModel(
-                    id: product.id,
-                    title: product.name,
-                    imageUrl: product.backgroundImage,
-                    releaseDate: product.released ?? "",
-                    ratingCount: product.ratingsCount,
-                    rating: product.rating,
-                    platform: product.parentPlatforms
-                )
-            )
+//            FavoriteButton(
+//                favoriteModel: buildFavoriteModel(
+//                    id: product.id,
+//                    title: product.name,
+//                    imageUrl: product.backgroundImage,
+//                    releaseDate: product.released ?? "",
+//                    ratingCount: product.ratingsCount,
+//                    rating: product.rating,
+//                    platform: product.parentPlatforms
+//                )
+//            )
         }
         .padding(16)
     }
