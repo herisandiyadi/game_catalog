@@ -25,20 +25,19 @@ class DIContainer {
       ProductService()
     }
     
+    container.register(FavoriteLocalDataSource.self) { _ in
+        FavoriteLocalDataSourceImpl()
+    }
+    
     container.register(ProductRepositoryProtocol.self) { resolver in
       let serviceProtocol = resolver.resolve(ProductServiceProtocol.self)!
       return ProductRepositoryImpl(productService: serviceProtocol)
     }
     
-    container.register(FavoriteLocalDataSource.self) { _ in
-        FavoriteLocalDataSourceImpl()
+    container.register(FavoriteRepositoryProtocol.self) { resolver in
+      let serviceProtocol = resolver.resolve(FavoriteLocalDataSource.self)!
+      return FavoriteRepositoryImpl(favoriteLocalDataSource: serviceProtocol)
     }
-    
-    container.register(FavoriteLocalDataSource.self) { resolver in
-      let favoriteLocalDataSource = resolver.resolve(FavoriteLocalDataSource.self)!
-      return FavoriteLocalDataSourceImpl()
-    }
-    
   }
   
   func resolve<T>(_ type: T.Type) -> T {
