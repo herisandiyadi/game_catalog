@@ -8,8 +8,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var presenter: HomePresenter = DIContainer.shared.resolve(HomePresenter.self)
-    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
-
+  
     var body: some View {
         NavigationStack {
             ZStack {

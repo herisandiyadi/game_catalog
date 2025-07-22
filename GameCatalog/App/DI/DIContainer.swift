@@ -17,6 +17,7 @@ class DIContainer {
     registerInjectionHome()
     registerDetailInjection()
     registerInjectionSearch()
+    registerInjectionFavorite()
   }
   
   private func registerDependencies(){
@@ -27,6 +28,15 @@ class DIContainer {
     container.register(ProductRepositoryProtocol.self) { resolver in
       let serviceProtocol = resolver.resolve(ProductServiceProtocol.self)!
       return ProductRepositoryImpl(productService: serviceProtocol)
+    }
+    
+    container.register(FavoriteLocalDataSource.self) { _ in
+        FavoriteLocalDataSourceImpl()
+    }
+    
+    container.register(FavoriteLocalDataSource.self) { resolver in
+      let favoriteLocalDataSource = resolver.resolve(FavoriteLocalDataSource.self)!
+      return FavoriteLocalDataSourceImpl()
     }
     
   }

@@ -25,8 +25,6 @@ class ProductService: ProductServiceProtocol {
             switch response.result {
               
             case .success(let productResponse):
-              print(productResponse.results)
-
                 completion(.success(productResponse.results))
             case .failure(let error):
                 completion(.failure(error))
@@ -41,7 +39,6 @@ class ProductService: ProductServiceProtocol {
             switch response.result {
             case .success(let productResponse):
               completion(.success(productResponse.results))
-              print("DATA GET \(productResponse.results)")
             case .failure(let error) : completion(.failure(error))
             }
        

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoriteView: View {
     @State private var selectedCardID: Int? = nil
-    @EnvironmentObject var viewModel: FavoriteViewModel
+  @StateObject private var presenter: FavoritePresenter = DIContainer.shared.resolve(FavoritePresenter.self)
 
     var body: some View {
         NavigationStack {
@@ -17,12 +17,14 @@ struct FavoriteView: View {
                 Color("BackgroundColor")
                     .ignoresSafeArea()
                 contentView
+            }.onChange(of: presenter.favorites) {
+              
             }
-            .onChange(of: viewModel.favorites) { newFavorites in
-                if newFavorites.isEmpty {
-                    selectedCardID = nil
-                }
-            }
+//            .onChange(of: presenter.favorites) { newFavorites in
+//                if newFavorites.isEmpty {
+//                    selectedCardID = nil
+//                }
+//            }
           
             .navigationDestination(isPresented: Binding<Bool>(
                 get: { selectedCardID != nil },
@@ -37,12 +39,12 @@ struct FavoriteView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        if viewModel.favorites.isEmpty {
+        if presenter.favorites.isEmpty {
             emptyStateView
         } else {
             ScrollView {
                 LazyVStack(spacing: 16) {
-                    ForEach(viewModel.favorites, id: \.gameId) { product in
+                    ForEach(presenter.favorites, id: \.gameId) { product in
                         buildCardView(for: product)
                     }
                 }
@@ -59,7 +61,7 @@ struct FavoriteView: View {
     }
 
     @ViewBuilder
-    private func buildCardView(for product: FavoriteModel) -> some View {
+  private func buildCardView(for product: FavoriteEntity) -> some View {
         CustomCardView(
             id: product.gameId,
             title: product.name,
