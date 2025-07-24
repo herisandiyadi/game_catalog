@@ -22,7 +22,9 @@ struct ProfileView: View {
     .onAppear {
       presenter.refreshProfileData()
     }
-    .sheet(isPresented: $showEditProfile) {
+    .sheet(isPresented: $showEditProfile, onDismiss: {
+      presenter.refreshProfileData()
+    }) {
       EditProfileView()
     }
   }
