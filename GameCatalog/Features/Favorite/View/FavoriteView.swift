@@ -17,15 +17,12 @@ struct FavoriteView: View {
                 Color("BackgroundColor")
                     .ignoresSafeArea()
                 contentView
-            }.onChange(of: presenter.favorites) {
-              
             }
-//            .onChange(of: presenter.favorites) { newFavorites in
-//                if newFavorites.isEmpty {
-//                    selectedCardID = nil
-//                }
-//            }
-          
+            .onChange(of: presenter.favorites) { newFavorites in
+                if newFavorites.isEmpty {
+                    selectedCardID = nil
+                }
+            }
             .navigationDestination(isPresented: Binding<Bool>(
                 get: { selectedCardID != nil },
                 set: { if !$0 { selectedCardID = nil } }

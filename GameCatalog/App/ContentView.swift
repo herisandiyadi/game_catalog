@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab = 0
+  @StateObject private var presenter: FavoritePresenter = DIContainer.shared.resolve(FavoritePresenter.self)
 
     var body: some View {
         NavigationStack {
@@ -25,7 +26,6 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Header
     private var headerView: some View {
         HStack {
             Image("logo_rawg")
@@ -37,7 +37,6 @@ struct ContentView: View {
         .padding(.horizontal, 16)
     }
 
-    // MARK: - Tab Content
     @ViewBuilder
     private var contentView: some View {
         switch selectedTab {
@@ -49,7 +48,6 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Bottom Tab Bar
     private var tabBar: some View {
         HStack {
             tabBarItem(icon: "house.fill", label: "Home", index: 0)
@@ -77,8 +75,7 @@ struct ContentView: View {
     }
 }
 
-
 #Preview {
-    ContentView().environmentObject(FavoriteViewModel())
+    ContentView()
 
 }

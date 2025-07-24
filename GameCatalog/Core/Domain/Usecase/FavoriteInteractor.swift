@@ -12,7 +12,7 @@ protocol FavoriteUsecase {
   func observeFavorites(changeHandler: @escaping (Result<[FavoriteEntity], Error>) -> Void) -> NotificationToken?
   func addFavorite(favoriteEntity: FavoriteEntity ,completion: @escaping (Result<Bool, Error>) -> Void)
   func removeFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
-  func isFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
+  func isFavorite(gameId: Int) -> Bool
 }
 
 class FavoriteInteractor: FavoriteUsecase {
@@ -38,11 +38,8 @@ class FavoriteInteractor: FavoriteUsecase {
     })
   }
   
-  func isFavorite(gameId: Int, completion: @escaping (Result<Bool, any Error>) -> Void) {
-      favoriteRepository.isFavorite(gameId: gameId, completion: {
-        result in
-        completion(result)
-      })
+  func isFavorite(gameId: Int) -> Bool {
+      favoriteRepository.isFavorite(gameId: gameId)
   }
 }
 

@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 
-
 class FavoriteModel: Object, Identifiable {
     @Persisted(primaryKey: true) var gameId: Int
     @Persisted var name: String = ""

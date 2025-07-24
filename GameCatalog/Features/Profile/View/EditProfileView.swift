@@ -97,8 +97,6 @@ struct EditProfileView: View {
             }
         }
 
-        // MARK: - Helper Functions
-
         private func displayedProfileImage() -> Image {
             if let selectedImage = selectedImage {
                 return Image(uiImage: selectedImage)

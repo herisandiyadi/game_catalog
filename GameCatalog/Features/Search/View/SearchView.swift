@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchView: View {
     @State private var searchText = ""
   @StateObject private var presenter: SearchPresenter = DIContainer.shared.resolve(SearchPresenter.self)
-    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
         NavigationStack {
@@ -24,15 +23,7 @@ struct SearchView: View {
 
                     contentView
                 }
-//                .padding(.top, 30)
-//                .navigationDestination(isPresented: Binding<Bool>(
-//                    get: { selectedCardID != nil },
-//                    set: { if !$0 { selectedCardID = nil } }
-//                )) {
-//                    if let id = selectedCardID {
-//                        DetailGameView(id: id)
-//                    }
-//                }
+
             }
             .onSubmit {
                 handleSearch()
@@ -106,11 +97,10 @@ struct SearchView: View {
         }
     }
 
-
 }
 
 #Preview {
     SearchView()
-        .environmentObject(FavoriteViewModel())
+        
 }
 

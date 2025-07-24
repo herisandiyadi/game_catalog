@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct FavoriteButton: View {
-    let favoriteModel: FavoriteModel
-    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
+  let favoriteEntity: FavoriteEntity
+  @StateObject private var presenter: FavoritePresenter = DIContainer.shared.resolve(FavoritePresenter.self)
     @State private var isFavorited: Bool = false
 
     var body: some View {
         Button(action: {
             if isFavorited {
-                favoriteViewModel.deleteFavorite(gameId: favoriteModel.gameId)
+              presenter.deleteFavorite(id: favoriteEntity.gameId)
             } else {
-                favoriteViewModel.addFavorite(favoriteModel)
+              presenter.addFavorite(favoriteEntity)
             }
             isFavorited.toggle()
         }) {
@@ -27,7 +27,8 @@ struct FavoriteButton: View {
                 .foregroundColor(isFavorited ? .red : .gray)
         }
         .onAppear {
-            isFavorited = favoriteViewModel.isFavorite(gameId: favoriteModel.gameId)
+          isFavorited = presenter.isFavoriteExist(id: favoriteEntity.gameId)
+          print("ISFAVORITE \(isFavorited)")
         }
     }
 }

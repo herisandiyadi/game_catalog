@@ -11,7 +11,6 @@ struct DetailGameView: View {
     let id: Int
     @Environment(\.presentationMode) var presentationMode
   @StateObject private var presenter = DIContainer.shared.resolve(DetailPresenter.self)
-    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
 
     var body: some View {
         ZStack {
@@ -87,7 +86,7 @@ struct DetailGameView: View {
             Spacer()
 
             FavoriteButton(
-                favoriteModel: buildFavoriteModel(
+                favoriteEntity: buildFavoriteModel(
                     id: product.id,
                     title: product.name,
                     imageUrl: product.backgroundImage,
@@ -181,8 +180,7 @@ struct DetailGameView: View {
     }
 }
 
-
 #Preview {
     DetailGameView(id: 100)
-        .environmentObject(FavoriteViewModel())
+      
 }

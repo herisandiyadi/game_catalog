@@ -25,6 +25,4 @@ class HomeInteractor: HomeUsecase {
     }
   }
   
-
-  
 }

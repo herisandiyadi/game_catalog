@@ -12,5 +12,5 @@ protocol FavoriteRepositoryProtocol {
   func observeFavorites(changeHandler: @escaping (Result<[FavoriteEntity], Error>) -> Void) -> NotificationToken?
   func addFavorite(favoriteEntity: FavoriteEntity ,completion: @escaping (Result<Bool, Error>) -> Void)
   func removeFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
-  func isFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
+  func isFavorite(gameId: Int) -> Bool
 }

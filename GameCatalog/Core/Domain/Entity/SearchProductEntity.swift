@@ -15,7 +15,6 @@ struct SearchProductEntity {
   let userPlatforms: Bool?
 }
 
-
 struct SearchResultEntity: Identifiable {
   let slug, name: String
   let playtime: Int

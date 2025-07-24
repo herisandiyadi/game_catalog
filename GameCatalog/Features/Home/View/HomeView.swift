@@ -69,10 +69,9 @@ struct HomeView: View {
         }.refreshable {
           presenter.loadGames()
         }
-        // Refreshable bisa kamu tambahkan kalau perlu
     }
 }
 
 #Preview {
-    HomeView().environmentObject(FavoriteViewModel())
+    HomeView()
 }

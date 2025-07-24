@@ -24,6 +24,10 @@ class FavoritePresenter: ObservableObject {
     loadFavorites()
   }
   
+  deinit {
+          notificationToken?.invalidate()
+      }
+  
   func loadFavorites() {
     loadingState = true
     notificationToken = favoriteUseCase.observeFavorites { [weak self] result in
@@ -38,7 +42,46 @@ class FavoritePresenter: ObservableObject {
     }
   }
   
+  func deleteFavorite(id: Int) {
+    loadingState = true
+    do {
+      try favoriteUseCase.removeFavorite(gameId: id) { [weak self] result in
+        DispatchQueue.main.async {
+          self?.loadingState = false
+          switch result {
+          case .success:
+            break
+          case .failure(let error):
+            self?.errorMessage = error.localizedDescription
+          }
+        }
+      }
+    }
+  }
+  
+  func addFavorite(_ favorite: FavoriteEntity) {
+    loadingState = true
+    do {
+      try favoriteUseCase.addFavorite(favoriteEntity: favorite) { [weak self] result in
+        DispatchQueue.main.async {
+          self?.loadingState = false
+          switch result {
+          case .success:
+            break
+          case .failure(let error):
+            self?.errorMessage = error.localizedDescription
+          }
+        }
+      }
+    }
+  }
+  
+  func isFavoriteExist(id: Int) -> Bool {
+    favoriteUseCase.isFavorite(gameId: id)
+  }
+  
   func linkBuilder<Content: View>(for id: Int, @ViewBuilder content: () -> Content) -> some View {
     NavigationLink(destination: router.makeDetailView(for: id)) { content() }
   }
+  
 }

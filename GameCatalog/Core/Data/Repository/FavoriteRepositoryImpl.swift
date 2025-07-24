@@ -31,8 +31,6 @@ class FavoriteRepositoryImpl: FavoriteRepositoryProtocol {
     }
   }
   
-  
-  
   func removeFavorite(gameId: Int, completion: @escaping (Result<Bool, any Error>) -> Void) {
     favoriteLocalDataSource.deleteFavorite(gameId: gameId) { result in
       switch result {
@@ -44,9 +42,8 @@ class FavoriteRepositoryImpl: FavoriteRepositoryProtocol {
     }
   }
   
-  func isFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-      let isFav = favoriteLocalDataSource.isFavorite(gameId: gameId)
-      completion(.success(isFav))
+  func isFavorite(gameId: Int) -> Bool {
+      favoriteLocalDataSource.isFavorite(gameId: gameId)
   }
   
 func observeFavorites(changeHandler: @escaping (Result<[FavoriteEntity], any Error>) -> Void) -> RealmSwift.NotificationToken? {

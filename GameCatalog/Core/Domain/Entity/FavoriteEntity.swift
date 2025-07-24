@@ -16,7 +16,6 @@ class FavoriteEntity: Identifiable, Equatable {
   var platforms: String = ""
   var ratingCount: Int = 0
   
-  
   init(gameId: Int, name: String, image: String, rating: Double, releaseDate: String, platforms: String, ratingCount: Int) {
       self.gameId = gameId
       self.name = name

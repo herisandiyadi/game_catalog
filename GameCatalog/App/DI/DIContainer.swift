@@ -18,6 +18,7 @@ class DIContainer {
     registerDetailInjection()
     registerInjectionSearch()
     registerInjectionFavorite()
+    registerInjectionProfile()
   }
   
   private func registerDependencies(){

@@ -48,12 +48,3 @@ struct SearchResult: Decodable {
         case parentPlatforms = "parent_platforms"
     }
 }
-//
-//struct ParentPlatformElement: Decodable {
-//    let platform: ParentPlatformPlatform
-//}
-//
-//struct ParentPlatformPlatform: Decodable {
-//    let id: Int
-//    let name, slug: String
-//}

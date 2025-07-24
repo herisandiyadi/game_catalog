@@ -83,8 +83,9 @@ class FavoriteLocalDataSourceImpl: FavoriteLocalDataSource {
   }
   
   func isFavorite(gameId: Int) -> Bool {
-      return realm.object(ofType: FavoriteModel.self, forPrimaryKey: gameId) != nil
+      
+    let isFav = realm.object(ofType: FavoriteModel.self, forPrimaryKey: gameId) != nil
+    return isFav
   }
 
-  
 }

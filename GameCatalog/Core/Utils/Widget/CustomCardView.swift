@@ -15,7 +15,7 @@ struct CustomCardView: View {
     let ratingCount: Int
     let releaseDate: String?
     let platform: [ParentPlatformEntity]
-    @EnvironmentObject var favoriteViewModel: FavoriteViewModel
+    @StateObject private var presenter: FavoritePresenter = DIContainer.shared.resolve(FavoritePresenter.self)
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -89,7 +89,7 @@ struct CustomCardView: View {
             Spacer()
 
             FavoriteButton(
-                favoriteModel: buildFavoriteModel(
+              favoriteEntity: buildFavoriteModel(
                     id: id,
                     title: title,
                     imageUrl: imageUrl,
@@ -152,5 +152,4 @@ struct CustomCardView: View {
             ParentPlatformEntity(platform: PlatformEntity(id: 0, name: "PC", slug: "pc"))
         ]
     )
-    .environmentObject(FavoriteViewModel())
 }
