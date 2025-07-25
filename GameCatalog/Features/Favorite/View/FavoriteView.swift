@@ -18,11 +18,6 @@ struct FavoriteView: View {
                     .ignoresSafeArea()
                 contentView
             }
-            .onChange(of: presenter.favorites) { newFavorites in
-                if newFavorites.isEmpty {
-                    selectedCardID = nil
-                }
-            }
             .navigationDestination(isPresented: Binding<Bool>(
                 get: { selectedCardID != nil },
                 set: { if !$0 { selectedCardID = nil } }

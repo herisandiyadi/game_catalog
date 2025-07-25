@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 import RealmSwift
+import Combine
 
 class FavoritePresenter: ObservableObject {
   private let favoriteUseCase: FavoriteUsecase
+  private var cancellables: Set<AnyCancellable> = []
   private let router = FavoriteRouter()
-  private var notificationToken: NotificationToken?
-
   
   @Published var favorites: [FavoriteEntity] = []
   @Published var errorMessage: String = ""
@@ -21,25 +21,21 @@ class FavoritePresenter: ObservableObject {
   
   init(favoriteUseCase: FavoriteUsecase) {
     self.favoriteUseCase = favoriteUseCase
-    loadFavorites()
+    observeFavorites()
   }
   
-  deinit {
-          notificationToken?.invalidate()
-      }
-  
-  func loadFavorites() {
+  func observeFavorites() {
     loadingState = true
-    notificationToken = favoriteUseCase.observeFavorites { [weak self] result in
+    favoriteUseCase.getFavoritePublisher()
+      .receive(on: RunLoop.main )
+      .sink { [weak self] favorites in
+      self?.favorites = favorites
       self?.loadingState = false
-      switch result {
-      case .success(let favorites):
-        self?.favorites = favorites
-      case .failure(let error):
-        self?.errorMessage = error.localizedDescription
-      }
-      
-    }
+    }.store(in: &cancellables)
+  }
+  
+  func isFavoritePublisher(gameId: Int) -> AnyPublisher<Bool, Never> {
+    favoriteUseCase.isFavoritePublisher(gameId: gameId)
   }
   
   func deleteFavorite(id: Int) {
@@ -74,10 +70,6 @@ class FavoritePresenter: ObservableObject {
         }
       }
     }
-  }
-  
-  func isFavoriteExist(id: Int) -> Bool {
-    favoriteUseCase.isFavorite(gameId: id)
   }
   
   func linkBuilder<Content: View>(for id: Int, @ViewBuilder content: () -> Content) -> some View {

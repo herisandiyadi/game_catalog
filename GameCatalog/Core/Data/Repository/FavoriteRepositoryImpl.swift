@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import Combine
 
 class FavoriteRepositoryImpl: FavoriteRepositoryProtocol {
   private let favoriteLocalDataSource: FavoriteLocalDataSource
@@ -16,6 +17,15 @@ class FavoriteRepositoryImpl: FavoriteRepositoryProtocol {
     self.favoriteLocalDataSource = favoriteLocalDataSource
     self.mapper = mapper
   }
+  
+  func getFavoritesPublisher() -> AnyPublisher<[FavoriteEntity], Never> {
+    favoriteLocalDataSource.getFavoritePublisher().map { models in  models.map {self.mapper.mapFavoriteModelToEntity($0) } }.eraseToAnyPublisher()
+  }
+  
+  func isFavoritePublisher(gameId: Int) -> AnyPublisher<Bool, Never> {
+    favoriteLocalDataSource.isFavoritePublisher(gameId: gameId)
+  }
+  
   
   func addFavorite(favoriteEntity: FavoriteEntity, completion: @escaping (Result<Bool, any Error>) -> Void) {
     let model = FavoriteModelMapper.mapFavoriteEntityToModel(favoriteEntity)
@@ -42,20 +52,4 @@ class FavoriteRepositoryImpl: FavoriteRepositoryProtocol {
     }
   }
   
-  func isFavorite(gameId: Int) -> Bool {
-      favoriteLocalDataSource.isFavorite(gameId: gameId)
-  }
-  
-func observeFavorites(changeHandler: @escaping (Result<[FavoriteEntity], any Error>) -> Void) -> RealmSwift.NotificationToken? {
-  return favoriteLocalDataSource.observeFavorites { results in
-      switch results {
-      case .success(let success):
-        let entitites = self.mapper.mapModelToEntity(success)
-        changeHandler(.success(entitites))
-      case .failure(let failure):
-        changeHandler(.failure(failure))
-    }
-  }
-  }
-
 }

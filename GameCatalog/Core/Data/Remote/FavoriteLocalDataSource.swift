@@ -7,52 +7,56 @@
 
 import Foundation
 import RealmSwift
+import Combine
 
 protocol FavoriteLocalDataSource {
-      func observeFavorites(changeHandler: @escaping (Result<[FavoriteModel], Error>) -> Void) -> NotificationToken?
-      func addFavorite(_ favorite: FavoriteModel, completion: @escaping (Result<Bool, Error>) -> Void)
+  func getFavoritePublisher() -> AnyPublisher<[FavoriteModel], Never>
+  func isFavoritePublisher(gameId: Int) -> AnyPublisher<Bool, Never>
+    func addFavorite(_ favorite: FavoriteModel, completion: @escaping (Result<Bool, Error>) -> Void)
       func deleteFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
-      func isFavorite(gameId: Int) -> Bool
 }
 
 class FavoriteLocalDataSourceImpl: FavoriteLocalDataSource {
-  private var realm: Realm
+  private let realm: Realm
+  private var notificationToken: NotificationToken?
+  private var favoriteSubject = CurrentValueSubject<[FavoriteModel], Never>([])
 
   init() {
-    do {
-        let config = Realm.Configuration(
-            schemaVersion: 1,
-            migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < 1 {
-                }
-            }
-        )
-        Realm.Configuration.defaultConfiguration = config
-        realm = try Realm()
-    } catch {
-        fatalError("Failed to initialize Realm: \(error.localizedDescription)")
-    }
+    let config = Realm.Configuration(
+           schemaVersion: 1,
+           migrationBlock: { _, _ in }
+       )
+       Realm.Configuration.defaultConfiguration = config
+       self.realm = try! Realm()
+    
+    observeFavorites()
+  }
+
+  deinit {
+    notificationToken?.invalidate()
   }
   
-  deinit {
+  func getFavoritePublisher() -> AnyPublisher<[FavoriteModel], Never> {
+    favoriteSubject.eraseToAnyPublisher()
+  }
+  
+  func isFavoritePublisher(gameId: Int) -> AnyPublisher<Bool, Never> {
+    let exist = realm.object(ofType: FavoriteModel.self, forPrimaryKey: gameId) != nil
+    return Just(exist).eraseToAnyPublisher()
     
   }
   
-  func observeFavorites(changeHandler: @escaping (Result<[FavoriteModel], Error>) -> Void) -> NotificationToken? {
-          let results = realm.objects(FavoriteModel.self)
-          let token = results.observe { changes in
-              DispatchQueue.main.async {
-                  switch changes {
-                  case .initial(let results), .update(let results, _, _, _):
-                    let favorites = Array(results.filter { !$0.isInvalidated }.map { $0.freeze() })
-                    changeHandler(.success(favorites))
-                  case .error(let error):
-                      changeHandler(.failure(error))
-                  }
-              }
-          }
-          return token
+  private func observeFavorites() {
+    let favorites = realm.objects(FavoriteModel.self)
+    notificationToken = favorites.observe { [weak self] changes in
+      switch changes {
+        case .initial(let results), .update(let results, _, _, _):
+        self?.favoriteSubject.send(results.map(\.self))
+      case .error(let error):
+        print("Realm error: \(error.localizedDescription)")
       }
+    }
+  }
   
   func addFavorite(_ favorite: FavoriteModel, completion: @escaping (Result<Bool, any Error>) -> Void) {
     do {
@@ -82,10 +86,4 @@ class FavoriteLocalDataSourceImpl: FavoriteLocalDataSource {
     }
   }
   
-  func isFavorite(gameId: Int) -> Bool {
-      
-    let isFav = realm.object(ofType: FavoriteModel.self, forPrimaryKey: gameId) != nil
-    return isFav
-  }
-
 }

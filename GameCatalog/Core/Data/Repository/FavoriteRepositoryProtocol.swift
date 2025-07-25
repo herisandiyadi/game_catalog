@@ -7,10 +7,11 @@
 
 import Foundation
 import RealmSwift
+import Combine
 
 protocol FavoriteRepositoryProtocol {
-  func observeFavorites(changeHandler: @escaping (Result<[FavoriteEntity], Error>) -> Void) -> NotificationToken?
+  func getFavoritesPublisher() -> AnyPublisher<[FavoriteEntity], Never>
+  func isFavoritePublisher(gameId: Int) -> AnyPublisher<Bool, Never>
   func addFavorite(favoriteEntity: FavoriteEntity ,completion: @escaping (Result<Bool, Error>) -> Void)
   func removeFavorite(gameId: Int, completion: @escaping (Result<Bool, Error>) -> Void)
-  func isFavorite(gameId: Int) -> Bool
 }

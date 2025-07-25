@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct FavoriteButton: View {
   let favoriteEntity: FavoriteEntity
+  @State private var cancellables = Set<AnyCancellable>()
   @StateObject private var presenter: FavoritePresenter = DIContainer.shared.resolve(FavoritePresenter.self)
     @State private var isFavorited: Bool = false
 
@@ -27,7 +29,12 @@ struct FavoriteButton: View {
                 .foregroundColor(isFavorited ? .red : .gray)
         }
         .onAppear {
-          isFavorited = presenter.isFavoriteExist(id: favoriteEntity.gameId)
+          bindFavoriteStatus()
+//          isFavorited = presenter.isFavoriteExist(id: favoriteEntity.gameId)
         }
     }
+  
+  private func bindFavoriteStatus(){
+    presenter.isFavoritePublisher(gameId: favoriteEntity.gameId).receive(on: RunLoop.main).sink{ isFavorited in self.isFavorited = isFavorited }.store(in: &cancellables)
+  }
 }
