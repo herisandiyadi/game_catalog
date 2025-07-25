@@ -28,7 +28,6 @@ class HomePresenter: ObservableObject {
         self.loadingState = false
         switch result {
         case .success(let resultSuccess):
-          print("DATA PRESENTER \(resultSuccess)")
           self.productEntity = resultSuccess
         case .failure(let error):
           self.errorMessage = error.localizedDescription

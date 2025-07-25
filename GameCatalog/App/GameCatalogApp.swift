@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct GameCatalogApp: App {
-//    @StateObject var favoriteViewModel = FavoriteViewModel()
 
     var body: some Scene {
         WindowGroup {
-//          DIContainer.shared.resolve(<#T##type: T.Type##T.Type#>)
-//            ContentView().environmentObject(favoriteViewModel)
+          ContentView()
         }
     }
 }
+
+

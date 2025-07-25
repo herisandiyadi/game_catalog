@@ -28,7 +28,6 @@ struct FavoriteButton: View {
         }
         .onAppear {
           isFavorited = presenter.isFavoriteExist(id: favoriteEntity.gameId)
-          print("ISFAVORITE \(isFavorited)")
         }
     }
 }
