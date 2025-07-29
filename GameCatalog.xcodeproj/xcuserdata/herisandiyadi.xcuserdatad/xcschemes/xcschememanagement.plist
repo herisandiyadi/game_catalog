@@ -7,7 +7,25 @@
 		<key>GameCatalog.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>8</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>B77B47372E19AB11006D4456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B7E9E3D82E38D60C00A4217A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B7E9E3F52E38DC4A00A4217A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

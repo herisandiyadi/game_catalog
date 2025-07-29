@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4A4670F7-3D55-40F2-BBDE-8655585BCFE6",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GameCatalog.xcodeproj",
+        "identifier" : "B7E9E45B2E38EE1800A4217A",
+        "name" : "GameCatalogTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -7,24 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19C40EE5BE13DFEC73F37107 /* Pods_GameCatalogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABEFA6C74DB86159F55D358 /* Pods_GameCatalogTests.framework */; };
 		321316E078BAFAE67EB446C7 /* Pods_GameCatalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46AFC047A1280286BAA69F4 /* Pods_GameCatalog.framework */; };
 		B7904B1E2E20F243008544EE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B7904B1D2E20F243008544EE /* RealmSwift */; };
 		B791FD2C2E27A113002F2591 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B791FD2B2E27A113002F2591 /* Swinject */; };
 		B797AC372E251F3B00C56520 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = B797AC362E251F3B00C56520 /* AlertToast */; };
 		B7DC072C2E1BD83900B28124 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B7DC072B2E1BD83900B28124 /* Alamofire */; };
-		FC65EA0769D93B0C70AE07C0 /* Pods_GameCatalog_GameCatalogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE19B92AF695DD1F3988664F /* Pods_GameCatalog_GameCatalogUITests.framework */; };
+		B7E9E4472E38E45500A4217A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B7904B1D2E20F243008544EE /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B7E9E4572E38ED8900A4217A /* GameCatalogTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = B7E9E4562E38ED8900A4217A /* GameCatalogTestPlan.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B77B47492E19AB13006D4456 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B77B47302E19AB11006D4456 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B77B47372E19AB11006D4456;
-			remoteInfo = GameCatalog;
-		};
-		B77B47532E19AB13006D4456 /* PBXContainerItemProxy */ = {
+		B7E9E4602E38EE1800A4217A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B77B47302E19AB11006D4456 /* Project object */;
 			proxyType = 1;
@@ -33,13 +26,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B7E9E4482E38E45500A4217A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B7E9E4472E38E45500A4217A /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1ABEFA6C74DB86159F55D358 /* Pods_GameCatalogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameCatalogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D22837CFF3258DE4EC9620E /* Pods-GameCatalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalogTests.release.xcconfig"; path = "Target Support Files/Pods-GameCatalogTests/Pods-GameCatalogTests.release.xcconfig"; sourceTree = "<group>"; };
 		6499C088C7AF85D66399DD55 /* Pods-GameCatalog-GameCatalogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalog-GameCatalogUITests.release.xcconfig"; path = "Target Support Files/Pods-GameCatalog-GameCatalogUITests/Pods-GameCatalog-GameCatalogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B77B47382E19AB11006D4456 /* GameCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B77B47482E19AB13006D4456 /* GameCatalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameCatalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B77B47522E19AB13006D4456 /* GameCatalogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameCatalogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E9E4562E38ED8900A4217A /* GameCatalogTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GameCatalogTestPlan.xctestplan; sourceTree = "<group>"; };
+		B7E9E45C2E38EE1800A4217A /* GameCatalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameCatalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F5BC37DE4504BED2DECEB0 /* Pods-GameCatalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalog.debug.xcconfig"; path = "Target Support Files/Pods-GameCatalog/Pods-GameCatalog.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D1A660EA25D063A437D6C9 /* Pods-GameCatalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalog.release.xcconfig"; path = "Target Support Files/Pods-GameCatalog/Pods-GameCatalog.release.xcconfig"; sourceTree = "<group>"; };
 		D9E06D69DF480B5B58EC11FC /* Pods-GameCatalogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalogTests.debug.xcconfig"; path = "Target Support Files/Pods-GameCatalogTests/Pods-GameCatalogTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -53,6 +60,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				rawg_key.xcconfig,
 			);
 			target = B77B47372E19AB11006D4456 /* GameCatalog */;
 		};
@@ -67,14 +75,9 @@
 			path = GameCatalog;
 			sourceTree = "<group>";
 		};
-		B77B474B2E19AB13006D4456 /* GameCatalogTests */ = {
+		B7E9E45D2E38EE1800A4217A /* GameCatalogTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GameCatalogTests;
-			sourceTree = "<group>";
-		};
-		B77B47552E19AB13006D4456 /* GameCatalogUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GameCatalogUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -92,19 +95,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B77B47452E19AB13006D4456 /* Frameworks */ = {
+		B7E9E4592E38EE1800A4217A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19C40EE5BE13DFEC73F37107 /* Pods_GameCatalogTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B77B474F2E19AB13006D4456 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC65EA0769D93B0C70AE07C0 /* Pods_GameCatalog_GameCatalogUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +131,9 @@
 		B77B472F2E19AB11006D4456 = {
 			isa = PBXGroup;
 			children = (
+				B7E9E4562E38ED8900A4217A /* GameCatalogTestPlan.xctestplan */,
 				B77B473A2E19AB11006D4456 /* GameCatalog */,
-				B77B474B2E19AB13006D4456 /* GameCatalogTests */,
-				B77B47552E19AB13006D4456 /* GameCatalogUITests */,
+				B7E9E45D2E38EE1800A4217A /* GameCatalogTests */,
 				B77B47392E19AB11006D4456 /* Products */,
 				184D842D4574D630AC497F8B /* Pods */,
 				07BA51BA87F0675270DE3E34 /* Frameworks */,
@@ -150,8 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				B77B47382E19AB11006D4456 /* GameCatalog.app */,
-				B77B47482E19AB13006D4456 /* GameCatalogTests.xctest */,
-				B77B47522E19AB13006D4456 /* GameCatalogUITests.xctest */,
+				B7E9E45C2E38EE1800A4217A /* GameCatalogTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +160,7 @@
 				B77B47342E19AB11006D4456 /* Sources */,
 				B77B47352E19AB11006D4456 /* Frameworks */,
 				B77B47362E19AB11006D4456 /* Resources */,
+				B7E9E4482E38E45500A4217A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,49 +174,28 @@
 			productReference = B77B47382E19AB11006D4456 /* GameCatalog.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B77B47472E19AB13006D4456 /* GameCatalogTests */ = {
+		B7E9E45B2E38EE1800A4217A /* GameCatalogTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B77B475F2E19AB13006D4456 /* Build configuration list for PBXNativeTarget "GameCatalogTests" */;
+			buildConfigurationList = B7E9E4622E38EE1800A4217A /* Build configuration list for PBXNativeTarget "GameCatalogTests" */;
 			buildPhases = (
-				43BE91ADA7CA6A3F12FDEB8F /* [CP] Check Pods Manifest.lock */,
-				B77B47442E19AB13006D4456 /* Sources */,
-				B77B47452E19AB13006D4456 /* Frameworks */,
-				B77B47462E19AB13006D4456 /* Resources */,
+				B7E9E4582E38EE1800A4217A /* Sources */,
+				B7E9E4592E38EE1800A4217A /* Frameworks */,
+				B7E9E45A2E38EE1800A4217A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B77B474A2E19AB13006D4456 /* PBXTargetDependency */,
+				B7E9E4612E38EE1800A4217A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				B77B474B2E19AB13006D4456 /* GameCatalogTests */,
+				B7E9E45D2E38EE1800A4217A /* GameCatalogTests */,
 			);
 			name = GameCatalogTests;
+			packageProductDependencies = (
+			);
 			productName = GameCatalogTests;
-			productReference = B77B47482E19AB13006D4456 /* GameCatalogTests.xctest */;
+			productReference = B7E9E45C2E38EE1800A4217A /* GameCatalogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B77B47512E19AB13006D4456 /* GameCatalogUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B77B47622E19AB13006D4456 /* Build configuration list for PBXNativeTarget "GameCatalogUITests" */;
-			buildPhases = (
-				E893E5A0E846B661CC6FDE3F /* [CP] Check Pods Manifest.lock */,
-				B77B474E2E19AB13006D4456 /* Sources */,
-				B77B474F2E19AB13006D4456 /* Frameworks */,
-				B77B47502E19AB13006D4456 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B77B47542E19AB13006D4456 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B77B47552E19AB13006D4456 /* GameCatalogUITests */,
-			);
-			name = GameCatalogUITests;
-			productName = GameCatalogUITests;
-			productReference = B77B47522E19AB13006D4456 /* GameCatalogUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -237,11 +210,7 @@
 					B77B47372E19AB11006D4456 = {
 						CreatedOnToolsVersion = 16.2;
 					};
-					B77B47472E19AB13006D4456 = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = B77B47372E19AB11006D4456;
-					};
-					B77B47512E19AB13006D4456 = {
+					B7E9E45B2E38EE1800A4217A = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = B77B47372E19AB11006D4456;
 					};
@@ -269,8 +238,7 @@
 			projectRoot = "";
 			targets = (
 				B77B47372E19AB11006D4456 /* GameCatalog */,
-				B77B47472E19AB13006D4456 /* GameCatalogTests */,
-				B77B47512E19AB13006D4456 /* GameCatalogUITests */,
+				B7E9E45B2E38EE1800A4217A /* GameCatalogTests */,
 			);
 		};
 /* End PBXProject section */
@@ -280,17 +248,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E9E4572E38ED8900A4217A /* GameCatalogTestPlan.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B77B47462E19AB13006D4456 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B77B47502E19AB13006D4456 /* Resources */ = {
+		B7E9E45A2E38EE1800A4217A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,28 +262,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		43BE91ADA7CA6A3F12FDEB8F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GameCatalogTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		915C91D364E8A558C370738C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,28 +284,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E893E5A0E846B661CC6FDE3F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GameCatalog-GameCatalogUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -376,14 +294,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B77B47442E19AB13006D4456 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B77B474E2E19AB13006D4456 /* Sources */ = {
+		B7E9E4582E38EE1800A4217A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -393,15 +304,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B77B474A2E19AB13006D4456 /* PBXTargetDependency */ = {
+		B7E9E4612E38EE1800A4217A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B77B47372E19AB11006D4456 /* GameCatalog */;
-			targetProxy = B77B47492E19AB13006D4456 /* PBXContainerItemProxy */;
-		};
-		B77B47542E19AB13006D4456 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B77B47372E19AB11006D4456 /* GameCatalog */;
-			targetProxy = B77B47532E19AB13006D4456 /* PBXContainerItemProxy */;
+			targetProxy = B7E9E4602E38EE1800A4217A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -538,6 +444,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GameCatalog/Preview Content\"";
+				DEVELOPMENT_TEAM = UM9DTV7C4K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GameCatalog/Info.plist;
@@ -547,7 +454,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,6 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GameCatalog/Preview Content\"";
+				DEVELOPMENT_TEAM = UM9DTV7C4K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GameCatalog/Info.plist;
@@ -579,7 +487,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -593,15 +501,14 @@
 			};
 			name = Release;
 		};
-		B77B47602E19AB13006D4456 /* Debug */ = {
+		B7E9E4632E38EE1800A4217A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9E06D69DF480B5B58EC11FC /* Pods-GameCatalogTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UM9DTV7C4K;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dicoding.gameCatalog.GameCatalogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -612,15 +519,14 @@
 			};
 			name = Debug;
 		};
-		B77B47612E19AB13006D4456 /* Release */ = {
+		B7E9E4642E38EE1800A4217A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D22837CFF3258DE4EC9620E /* Pods-GameCatalogTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UM9DTV7C4K;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dicoding.gameCatalog.GameCatalogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,40 +534,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GameCatalog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GameCatalog";
-			};
-			name = Release;
-		};
-		B77B47632E19AB13006D4456 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE11D0E2C2B79235AD9E6C5F /* Pods-GameCatalog-GameCatalogUITests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dicoding.gameCatalog.GameCatalogUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GameCatalog;
-			};
-			name = Debug;
-		};
-		B77B47642E19AB13006D4456 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6499C088C7AF85D66399DD55 /* Pods-GameCatalog-GameCatalogUITests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dicoding.gameCatalog.GameCatalogUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GameCatalog;
 			};
 			name = Release;
 		};
@@ -686,20 +558,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B77B475F2E19AB13006D4456 /* Build configuration list for PBXNativeTarget "GameCatalogTests" */ = {
+		B7E9E4622E38EE1800A4217A /* Build configuration list for PBXNativeTarget "GameCatalogTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B77B47602E19AB13006D4456 /* Debug */,
-				B77B47612E19AB13006D4456 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B77B47622E19AB13006D4456 /* Build configuration list for PBXNativeTarget "GameCatalogUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B77B47632E19AB13006D4456 /* Debug */,
-				B77B47642E19AB13006D4456 /* Release */,
+				B7E9E4632E38EE1800A4217A /* Debug */,
+				B7E9E4642E38EE1800A4217A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
