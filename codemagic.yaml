@@ -1,9 +1,4 @@
-#
-//  codemagic.yaml
-//  GameCatalog
-//
-//  Created by Heri Sandiyadi on 29/07/25.
-//
+
 
 workflows:
   ios-project-debug: # workflow ID
