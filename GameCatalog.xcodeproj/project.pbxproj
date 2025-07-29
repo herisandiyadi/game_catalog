@@ -14,6 +14,7 @@
 		B7DC072C2E1BD83900B28124 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B7DC072B2E1BD83900B28124 /* Alamofire */; };
 		B7E9E4472E38E45500A4217A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B7904B1D2E20F243008544EE /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B7E9E4572E38ED8900A4217A /* GameCatalogTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = B7E9E4562E38ED8900A4217A /* GameCatalogTestPlan.xctestplan */; };
+		B7E9E4762E38F57500A4217A /* codemagic.yaml in Resources */ = {isa = PBXBuildFile; fileRef = B7E9E4752E38F56D00A4217A /* codemagic.yaml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B77B47382E19AB11006D4456 /* GameCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E9E4562E38ED8900A4217A /* GameCatalogTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GameCatalogTestPlan.xctestplan; sourceTree = "<group>"; };
 		B7E9E45C2E38EE1800A4217A /* GameCatalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameCatalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E9E4752E38F56D00A4217A /* codemagic.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
 		C6F5BC37DE4504BED2DECEB0 /* Pods-GameCatalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalog.debug.xcconfig"; path = "Target Support Files/Pods-GameCatalog/Pods-GameCatalog.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D1A660EA25D063A437D6C9 /* Pods-GameCatalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalog.release.xcconfig"; path = "Target Support Files/Pods-GameCatalog/Pods-GameCatalog.release.xcconfig"; sourceTree = "<group>"; };
 		D9E06D69DF480B5B58EC11FC /* Pods-GameCatalogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameCatalogTests.debug.xcconfig"; path = "Target Support Files/Pods-GameCatalogTests/Pods-GameCatalogTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		B77B472F2E19AB11006D4456 = {
 			isa = PBXGroup;
 			children = (
+				B7E9E4752E38F56D00A4217A /* codemagic.yaml */,
 				B7E9E4562E38ED8900A4217A /* GameCatalogTestPlan.xctestplan */,
 				B77B473A2E19AB11006D4456 /* GameCatalog */,
 				B7E9E45D2E38EE1800A4217A /* GameCatalogTests */,
@@ -248,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E9E4762E38F57500A4217A /* codemagic.yaml in Resources */,
 				B7E9E4572E38ED8900A4217A /* GameCatalogTestPlan.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
