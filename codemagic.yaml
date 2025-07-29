@@ -23,6 +23,11 @@ workflows:
             -destination "$XCODE_DESTINATION" \
             clean build test \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+      
+      - name: Resolve Swift Package Dependencies
+        script: |
+          xcodebuild -resolvePackageDependencies -project "$XCODE_PROJECT" -scheme "$XCODE_SCHEME"
+
 
       - name: Build debug app
         script: |
