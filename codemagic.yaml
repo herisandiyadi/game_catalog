@@ -13,6 +13,10 @@ workflows:
         script: |
           gem install cocoapods # opsional, jika belum terinstal
           pod install || true   # akan di-skip jika tidak pakai .xcworkspace
+          
+      - name: Resolve Swift Package Dependencies
+        script: |
+          xcodebuild -resolvePackageDependencies -project "$XCODE_PROJECT" -scheme "$XCODE_SCHEME"
 
       - name: Run unit tests
         script: |
@@ -24,11 +28,6 @@ workflows:
             clean build test \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
       
-      - name: Resolve Swift Package Dependencies
-        script: |
-          xcodebuild -resolvePackageDependencies -project "$XCODE_PROJECT" -scheme "$XCODE_SCHEME"
-
-
       - name: Build debug app
         script: |
           xcodebuild \
